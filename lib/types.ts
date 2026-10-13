@@ -1,0 +1,6 @@
+export const spendingKeys = ['groceries','dining','gas','transit','travel','shopping','subscriptions','other'] as const;
+export type Category = typeof spendingKeys[number];
+export type Spending = Record<Category,number>;
+export type Card = {id:string;name:string;issuer:string;network:string;kind:'consumer'|'business';annualFee:number;fxFee:number;apr:number;earn: Record<Category|'foreign',number>;base:number;cap:Partial<Record<Category,number>>;benefits:{name:string;value:number;max:number;requiresTravel?:boolean}[];bonus:number;minSpend:number;accent:string};
+export type Profile = {name:string;country:'CA';currency:'CAD';persona:'everyday'|'traveler'|'founder';spending:Spending;foreignMonthly:number;trips:number;loungeVisits:number;rewardPreference:'cashback'|'travel'|'flexible';annualFeeLimit:number;payInFull:boolean;balance:number;bonusEligible:boolean;wallet:string[];airline:string;hotel:string;simplicity:number;newCard:boolean;business:boolean};
+export type Evaluation = {card:Card;gross:number;fee:number;fxCost:number;interestCost:number;benefitValue:number;ongoing:number;firstYear:number;bonus:number;eligibleBonus:boolean;breakdown:Record<string,number>;uncertainties:string[]};
